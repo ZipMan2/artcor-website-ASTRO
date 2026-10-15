@@ -1,0 +1,25 @@
+---
+import Footer from '../components/Footer.astro';
+import Head from '../components/Head.astro';
+import Navbar from '../features/Navbar/Navbar';
+import '../styles/global.css';
+
+const { title = 'Artott – Meble na wymiar', description = 'Producent mebli na wymiar...' } = Astro.props;
+
+const path = Astro.url.pathname;
+---
+
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+  <Head title={title} description={description} />
+</head>
+	<body>
+    <Navbar currentPath={path} client:load />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+	</body>
+</html>
+

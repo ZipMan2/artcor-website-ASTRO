@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+
+import Title from './ui/Title.astro';
+import CtaButton from './ui/CtaButton.astro';
+
+import PROFESSIONALISMJPG from '../assets/img/professionalism-bg.jpeg';
+
+// Professionalism Content 
+const SECTION_DATA = {
+  title: 'Profesjonalizm',
+  paragraphs: [
+    'Zapewniamy całkowitą realizację zamówienia począwszy od fazy projektu, aż do jego sfinalizowania.',
+    'Oferujemy Państwu nasze długoletnie doświadczenie i nowoczesną technologię.',
+  ],
+  callout: 'Dowiedz się jak pracujemy',
+  cta: {
+    label: 'O nas',
+    href: '/o-nas',
+  },
+  image: {
+    src: PROFESSIONALISMJPG,
+    alt: 'Meble w kuchni',
+  },
+};
+---
+
+<section class="w-full border-t border-stone-200">
+  <div class="mx-auto grid w-full max-w-[1800px] grid-cols-1 md:grid-cols-2">
+
+    <!-- ----  Text Content -->
+    <div class="flex flex-col justify-center px-6 py-10 md:order-2 md:justify-start md:px-24 md:py-37 md:pl-13">
+      
+      <!-- Main Section Heading -->
+      <Title title={SECTION_DATA.title} as="h3" color="text-brand-black" class="md:text-3xl" />
+
+      <!-- Description Paragraphs -->
+      <p class="mb-2 text-sm leading-relaxed text-stone-700 sm:text-base md:mt-6">
+        {SECTION_DATA.paragraphs[0]}
+      </p>
+      <p class="mb-18 text-sm leading-relaxed text-stone-700 sm:text-base">
+        {SECTION_DATA.paragraphs[1]}
+      </p>
+
+      <!-- Subtitle Line -->
+      <span class="mb-4 text-sm font-medium text-stone-900 sm:text-xl">
+        {SECTION_DATA.callout}
+      </span>
+
+      <!-- CTA Button -->
+      <CtaButton
+        href={SECTION_DATA.cta.href}
+        label={SECTION_DATA.cta.label}
+        class="bg-brand-beige text-brand-black w-fit px-6 py-3 text-sm font-medium tracking-widest uppercase transition hover:opacity-90"
+      />
+
+    </div>
+
+    <!-- ---- Professionalism Image  -->
+    <div class="relative min-h-[320px] md:min-h-[780px]">
+      <Image
+        src={SECTION_DATA.image.src}
+        alt={SECTION_DATA.image.alt}
+        class="absolute inset-0 size-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+  </div>
+</section>

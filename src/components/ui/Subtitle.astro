@@ -1,0 +1,18 @@
+---
+interface Props {
+  subtitle: string;
+  color?: string; 
+  class?: string;
+}
+
+const {
+  subtitle,
+  color = 'text-brand-white/80',
+  class: className = '',
+} = Astro.props;
+---
+
+<!-- Subtitle -->
+<p class={`mb-6 text-base sm:mb-8 sm:text-lg ${color} ${className}`}>
+  {subtitle}
+</p>

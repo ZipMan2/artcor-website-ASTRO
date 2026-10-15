@@ -1,0 +1,33 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  variant?: 'beige' | 'red' | 'outline';
+  class?: string;
+}
+
+const {
+  href,
+  label,
+  variant = 'beige',
+  class: className = '',
+} = Astro.props;
+
+const styles = {
+  beige:   'bg-brand-beige text-brand-black hover:opacity-90',
+  red:     'bg-brand-red text-brand-white hover:opacity-90',
+  outline: 'border border-brand-beige text-brand-beige hover:bg-brand-beige hover:text-brand-black',
+};
+---
+
+<!-- CTA Button -->
+<a
+  href={href}
+  class:list={[
+    'inline-flex px-5 py-3 w-fit text-sm font-medium uppercase tracking-widest transition sm:px-6',
+    styles[variant],
+    className,
+  ]}
+>
+  {label}
+</a>

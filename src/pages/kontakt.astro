@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Contact data
+const DEPARTMENTS = [
+  {
+    name: 'Biuro / kontakt ogólny',
+    person: 'Wioletta Stach',
+    email: 'biuro@artcor.pl',
+    phone: '146585005',
+    phoneDisplay: '14 658 50 05',
+  },
+  {
+    name: 'Dział Marketingu',
+    person: 'Paulina Szczepaniak',
+    email: 'paulina.szczepaniak@artcor.pl',
+    phone: '797878624',
+    phoneDisplay: '797 878 624',
+  },
+  {
+    name: 'Dział technologiczno-produkcyjny',
+    person: 'Tomasz Jankosz',
+    email: 'produkcja@artcor.pl',
+    phone: '786186366',
+    phoneDisplay: '786 186 366',
+  },
+  {
+    name: 'Kierownik produkcji',
+    person: 'Andżelika Nowotny-Jarosz',
+    email: 'orders@artcor.pl',
+    phone: '508703449',
+    phoneDisplay: '508 703 449',
+  },
+  {
+    name: 'Logistyka i Zaopatrzenie',
+    person: 'Sylwester Mularz',
+    email: 'sylwek@artcor.pl',
+    phone: '787780890',
+    phoneDisplay: '787 780 890',
+  },
+];
+---
+
+<BaseLayout title="Kontakt – Artcor" description="Skontaktuj się z nami i zamów wycenę mebli na wymiar.">
+  <section class="border-t border-neutral-200 py-8">
+    <div class="mx-auto max-w-7xl px-6">
+      
+      <!-- Section Header -->
+      <div class="mb-8">
+        <h2 class="mb-4 text-2xl font-light md:text-3xl">Działy kontaktowe</h2>
+        <p class="max-w-2xl text-neutral-500">Skontaktuj się bezpośrednio z odpowiednim działem firmy.</p>
+      </div>
+
+      <!-- Data Grid -->
+      <div class="grid gap-6 md:grid-cols-2">
+        {DEPARTMENTS.map((dept) => (
+          <div class="border border-neutral-200 p-4 transition hover:border-black md:p-6">
+
+            {/*  Name */}
+            <h3 class="text-md mb-1 font-medium">{dept.name}</h3>
+            {/* Person */}
+            <p class="mb-6 text-sm text-neutral-500">{dept.person}</p>
+
+            <div class="space-y-2">
+              {/* <!-- Email --> */}
+              <a href={`mailto:${dept.email}`} class="block text-sm transition hover:text-neutral-500">
+                email: {dept.email}
+              </a>
+              {/* Phone */}
+              <a href={`tel:${dept.phone}`} class="block text-sm transition hover:text-neutral-500">
+                tel: {dept.phoneDisplay}
+              </a>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

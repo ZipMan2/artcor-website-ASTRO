@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+
+import Title from './ui/Title.astro';
+import CtaButton from './ui/CtaButton.astro';
+
+import FEATURESBGPNG from '../assets/img/features-bg.png';
+
+// Features Content
+const SECTION_DATA = {
+  title: 'Co nas wyróżnia?',
+  paragraphs: [
+    'Oferujemy nasze długoletnie doświadczenie, wykwalifikowanych pracowników oraz cyfrowy park maszynowy do realizacji Państwa projektów oraz przetargów.',
+    'Ciągle się szkolimy i rozwijamy swoje umiejętności, a także technologię, z której korzystamy.',
+    'Żadne zlecenie nie stanowi dla nas przeszkód!',
+  ],
+  callout: 'Szukasz sprawdzonego wykonawcy?',
+  cta: {
+    label: 'Skontaktuj się',
+    href: '/kontakt',
+  },
+  image: {
+    src: FEATURESBGPNG,
+    alt: 'Meble kuchenne',
+  },
+};
+---
+
+<section class="w-full">
+  <div class="mx-auto grid w-full max-w-[1800px] grid-cols-1 md:grid-cols-2">
+
+    <!-- ---- Text Content -->
+    <div class="flex flex-col justify-center px-6 py-10 md:order-2 md:px-13 md:py-24">
+      <!-- Section Title -->
+      <Title title={SECTION_DATA.title} as="h2" color="text-brand-black" class="md:text-3xl" />
+
+      <!-- Description Paragraphs -->
+      <p class="mb-2 text-sm leading-relaxed text-brand-black/70 sm:text-base md:mt-6">
+        {SECTION_DATA.paragraphs[0]}
+      </p>
+      <p class="mb-5 text-sm leading-relaxed text-brand-black/70 sm:text-base">
+        {SECTION_DATA.paragraphs[1]}
+      </p>
+      <p class="mb-5 text-sm leading-relaxed text-brand-black/70 sm:text-base md:mb-14">
+        {SECTION_DATA.paragraphs[2]}
+      </p>
+
+      <!-- Callout Line -->
+      <span class="mb-6 text-sm font-medium text-brand-black sm:text-xl md:mb-8">
+        {SECTION_DATA.callout}
+      </span>
+
+      <!-- CTA Button -->
+      <CtaButton href={SECTION_DATA.cta.href} label={SECTION_DATA.cta.label} />
+    </div>
+
+    <!-- ----  Feature Image -->
+    <div class="relative min-h-[320px] md:min-h-[780px]">
+      <Image
+        src={SECTION_DATA.image.src}
+        alt={SECTION_DATA.image.alt}
+        class="absolute inset-0 size-full object-cover"
+        loading="lazy"
+      />
+    </div>
+
+  </div>
+</section>

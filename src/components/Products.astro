@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+
+import Title from './ui/Title.astro';
+import CtaButton from './ui/CtaButton.astro';
+
+import PRODUCTSJBG from '../assets/img/products-bg.jpeg';
+
+// Products Content 
+const SECTION_DATA = {
+  title: 'Produkujemy meble:',
+  items: [
+    'wolnostojące',
+    'systemy ścienne',
+    'meble wyposażenia przestrzeni sklepowej',
+    'stoisk targowych',
+    'hoteli',
+    'restauracji',
+    'punktów usługowych',
+  ],
+  subtitle: 'Potrzebujesz czegoś wyjątkowego?',
+  cta: {
+    label: 'Skontaktuj się',
+    href: '/kontakt',
+  },
+  image: {
+    src: PRODUCTSJBG,
+    alt: 'Wielki Bar',
+  },
+};
+---
+
+<section class="w-full border-b border-stone-200">
+  <div class="mx-auto grid w-full max-w-[1800px] grid-cols-1 md:grid-cols-2">
+
+    <!-- ----  Products Contentn -->
+    <div class="flex flex-col justify-center px-6 py-10 md:justify-start md:px-22 md:py-30 md:pl-30">
+      
+      <!-- Main Heading -->
+      <Title title={SECTION_DATA.title} as="h2" color="text-brand-black" class="md:text-3xl" />
+
+      <!-- List of Products -->
+      <ul class="mb-10 list-inside list-disc space-y-0 text-sm text-stone-700 sm:text-base">
+        {SECTION_DATA.items.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+
+      <!-- Subtitle Callout -->
+      <h4 class="mb-12 text-base font-medium sm:text-lg">
+        {SECTION_DATA.subtitle}
+      </h4>
+
+      <!-- CTA Button -->
+      <CtaButton
+        href={SECTION_DATA.cta.href}
+        label={SECTION_DATA.cta.label}
+      />
+
+    </div>
+
+    <!-- ---- Product Image  -->
+    <div class="relative min-h-[320px] md:min-h-[780px]">
+      <Image
+        src={SECTION_DATA.image.src}
+        alt={SECTION_DATA.image.alt}
+        class="absolute inset-0 size-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+  </div>
+</section>

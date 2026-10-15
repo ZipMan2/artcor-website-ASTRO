@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+
+import LOGOPNG from '../assets/img/logo.png';
+
+// Footer Content
+const FOOTER_DATA = {
+  companyName: 'Artcor',
+  logo: {
+    src: LOGOPNG,
+    alt: 'Artcor logo',
+    href: '/',
+  },
+  copyrightYear: new Date().getFullYear(),
+  contact: {
+    title: 'Kontakt',
+    email: 'biuro@artcor.pl',
+    phone: '+48 14 658 50 05',
+  },
+  address: {
+    title: 'Adres',
+    street: 'ul. Antoniego Chwałkowskiego 16',
+    city: '32-700 Bochnia',
+    country: 'Polska',
+  },
+};
+---
+
+<footer class="w-full bg-brand-light border-t border-stone-200">
+  <div class="grid max-w-[1600px] grid-cols-1 gap-10 px-6 py-10 mx-auto md:grid-cols-3 md:px-12">
+    
+    <!-- Branding & Copyright -->
+    <div class="flex flex-col items-start">
+      <a href={FOOTER_DATA.logo.href}>
+        <Image
+          src={FOOTER_DATA.logo.src}
+          alt={FOOTER_DATA.logo.alt}
+          width={180}
+          height={60}
+          loading="lazy"
+          decoding="async"
+          class="mb-5 h-auto w-auto"
+        />
+      </a>
+      <p class="mb-2 text-sm text-stone-600">
+        Copyright © {FOOTER_DATA.copyrightYear} {FOOTER_DATA.companyName}
+      </p>
+    </div>
+
+    <!-- Footer Details -->
+    <div class="flex flex-col items-start">
+      <span class="mb-3 text-sm font-semibold tracking-widest uppercase">
+        {FOOTER_DATA.contact.title}
+      </span>
+      <a
+        href={`mailto:${FOOTER_DATA.contact.email}`}
+        class="mb-2 text-sm text-stone-700 transition hover:text-black"
+      >
+        <strong class="font-semibold">EMAIL:</strong> {FOOTER_DATA.contact.email}
+      </a>
+      <a
+        href={`tel:${FOOTER_DATA.contact.phone.replace(/\s+/g, '')}`}
+        class="text-sm text-stone-700 transition hover:text-black"
+      >
+        <strong class="font-semibold">TELEFON:</strong> {FOOTER_DATA.contact.phone}
+      </a>
+    </div>
+
+    <!-- Address  -->
+    <div class="flex flex-col items-start">
+      <span class="mb-3 text-sm font-semibold tracking-widest uppercase">
+        {FOOTER_DATA.address.title}
+      </span>
+      <p class="text-sm leading-relaxed text-stone-700">
+        {FOOTER_DATA.address.street}<br />
+        {FOOTER_DATA.address.city}<br />
+        {FOOTER_DATA.address.country}
+      </p>
+    </div>
+
+  </div>
+</footer>

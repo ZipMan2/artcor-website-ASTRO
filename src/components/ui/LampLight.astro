@@ -1,0 +1,125 @@
+---
+// Created by: ZipMan2 (github.com)
+---
+
+<div id="lamp-wrap" class="lamp-wrap" aria-hidden="true">
+
+  <!-- Kabeldo lampy -->
+  <div class="lamp-cord"></div>
+
+  <!-- Klosz lampy narysowany za pomocą SVG -->
+  <svg class="lamp-shade" viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg">
+    <!-- Górna obręcz klosza -->
+    <ellipse cx="80" cy="10" rx="30" ry="6" fill="#2a2018" />
+    <!-- Główna bryła klosza -->
+    <path d="M50 10 Q28 45 12 90 L148 90 Q132 45 110 10 Z" fill="#3a2e22" />
+    <!-- Dolna krawędź klosza -->
+    <ellipse cx="80" cy="90" rx="68" ry="10" fill="#2a2018" />
+    <!-- Efekt połysku/refleksu światła na kloszu -->
+    <path d="M66 14 Q58 45 54 82" stroke="rgba(255,255,255,0.07)" stroke-width="8" fill="none" stroke-linecap="round" />
+  </svg>
+
+  <!-- Stożek światła z lampy -->
+  <div class="lamp-cone"></div>
+
+</div>
+
+<style>
+  .lamp-wrap {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    translate: -50% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 10;
+    transform-origin: top center;
+
+    /* Animacja chuśtania */
+    animation: swing 6s ease-in-out infinite;
+
+    /* Ukrycie na ekranach */
+    @media (max-width: 969px)  { display: none; }
+    @media (min-width: 1790px) { display: none; }
+  }
+
+  /* KAbel lampy */
+  .lamp-cord {
+    width: 2px;
+    height: 150px;
+    background: linear-gradient(to bottom, #1a1410, #3a2e22);
+  }
+
+  .lamp-shade {
+    width: 160px;
+    height: 90px;
+    margin-top: -4px;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+  }
+
+  /* Stożek światła */
+  .lamp-cone {
+  width: 720px;               /* Szerokość światła */
+  height: 380px;              /* Długość snopu światła */
+  margin-top: -6px;           
+  
+  /* Kolor światła */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 245, 160, 0.4) 0%, 
+    rgba(255, 245, 160, 0.15) 40%, 
+    rgba(255, 245, 160, 0) 100% 
+  );
+
+  /* Kształt snopu swiatła */
+  /* polygon(góra-lewo, góra-prawo, dół-prawo, dół-lewo) */
+  clip-path: polygon(42% 0%, 58% 0%, 100% 100%, 0% 100%);
+
+  /* Animacje */
+  filter: blur(12px);           /* Rozmycie krawędzi */
+  transform-origin: top center;
+  transition: opacity 0.3s;
+
+  /* Efekt połysku/refleksu */
+  animation: flicker 12s ease-in-out infinite;
+}
+
+  .lamp-wrap.off .lamp-cone {
+    opacity: 0;
+    animation: none;
+  }
+
+  @keyframes swing {
+    0%, 100% { rotate: -2deg; }
+    50%       { rotate:  2deg; }
+  }
+
+  @keyframes flicker {
+  0%, 100% { opacity: 1;    }
+  50%      { opacity: 0.94; }
+  85%      { opacity: 0.97; }
+}
+</style>
+
+<script>
+  function initLamp() {
+    const lamp = document.getElementById('lamp-wrap');
+    if (!lamp || lamp.dataset.listenerAttached) return;
+    lamp.dataset.listenerAttached = 'true';
+
+    if (localStorage.getItem('lamp') === 'off') {
+      lamp.classList.add('off');
+    }
+
+    lamp.addEventListener('click', () => {
+      lamp.classList.toggle('off');
+      localStorage.setItem('lamp', lamp.classList.contains('off') ? 'off' : 'on');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initLamp);
+  document.addEventListener('astro:page-load', initLamp);
+</script>

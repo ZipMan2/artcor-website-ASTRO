@@ -1,0 +1,26 @@
+---
+import CtaButton from '../components/ui/CtaButton.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 – Nie znaleziono strony" description="Ta strona nie istnieje.">
+
+  <section class="flex flex-col items-center justify-center px-6 py-10 md:py-28 text-center">
+
+    <p class="mb-4 text-sm font-medium uppercase tracking-widest text-brand-red">404</p>
+
+    <h1 class="mb-6 text-4xl font-bold text-brand-black sm:text-5xl">
+      Strona nie istnieje
+    </h1>
+
+    <p class="mb-10 max-w-md text-brand-black/60">
+      Strona, której szukasz, została przeniesiona lub nie istnieje.
+    </p>
+
+    <CtaButton
+      href="/"
+      label="Wróć na stronę główną"
+    />
+
+  </section>
+</BaseLayout>

@@ -1,0 +1,99 @@
+---
+import ChestAnimation from '../components/ui/ChestAnimation.astro';
+import CtaButton from '../components/ui/CtaButton.astro';
+import Subtitle from '../components/ui/Subtitle.astro';
+import Title from '../components/ui/Title.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// About Page Content
+const PAGE_HERO = {
+  title: 'Produkujemy nowoczesne meble',
+  subtitle: 'ARTCOR tworzą doświadczeni, zaangażowani i kreatywni specjaliści w zakresie projektowania i produkcji mebli oraz przestrzeni własnej, a także usługowo–handlowej.',
+};
+
+const ABOUT_DETAILS = {
+  title: 'Do kogo kierujemy naszą ofertę?',
+  paragraphs: [
+    'Naszą ofertę kierujemy głównie do firm oraz wszelkich placówek, ośrodków i lokali rozrywkowych, dla których wyposażenie powinno być spójne ze strategią marki i wspierać jej wizerunek, gdzie komfortowe, funkcjonalne wnętrza i nowoczesne meble z rozwiązaniami realizacyjnymi podkreślającymi charakter miejsca, zapewnią zadowolenie klientów i sprawią, że chętnie będą powracać.',
+    'Posiadamy też obszerną grupę klientów indywidualnych, którym pomogliśmy zrealizować ich wymarzoną przestrzeń osobistą naznaczoną indywidualnością i niepowtarzalnym stylem. Zapewniamy całkowitą realizację zamówienia począwszy od fazy projektu, aż do jego sfinalizowania.',
+  ],
+};
+
+const HOW_WE_WORK = {
+  title: 'Jak działamy?',
+  paragraphs: [
+    'Wychodząc naprzeciw zróżnicowanym potrzebom i gustom klientów oferujemy produkcję mebli we wszelkich stylach. Nasze usługi obejmują zarówno wykonanie projektu, produkcję mebli oraz ich transport i montaż.',
+    'Realizujemy również zlecenia według projektów autorskich. Podejmujemy się produkcji mebli wolnostojących, systemów ściennych, nowoczesnych mebli wyposażenia przestrzeni sklepowych (POS, SiS), stoisk targowych, hoteli, restauracji i wszelkich punktów usługowych.',
+    'Zapraszamy do współpracy osoby indywidualne oraz firmy poszukujące sprawdzonego partnera biznesowego.',
+    'Oferujemy nasze długoletnie doświadczenie, wykwalifikowanych pracowników oraz cyfrowy park maszynowy do realizacji Państwa projektów oraz przetargów.',
+  ],
+  cta: {
+    label: 'Skontaktuj się z nami',
+    href: '/kontakt',
+  },
+};
+---
+
+<BaseLayout title="O nas – Artcor" description="Poznaj zespół Artott – doświadczonych specjalistów w projektowaniu i produkcji mebli.">
+
+  <!-- ------ About Target Audience Section -->
+  <section class="w-full bg-white py-6 border-b border-stone-100">
+    <div class="mx-auto max-w-5xl px-6 text-left">
+
+      <!-- Title -->
+      <Title title={ABOUT_DETAILS.title} as="h2" color="text-brand-black" class="md:text-3xl" />
+      <!-- Subtitle -->
+      <div class="space-y-4 text-stone-700 text-base sm:text-1xl leading-relaxed">
+        {ABOUT_DETAILS.paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ------ Animated Chest and Text Section  -->
+  <section class="w-full bg-brand-light pt-12 pb-12 border-b border-stone-200">
+    <div class="mx-auto max-w-6xl px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Animated Chest -->
+        <div class="lg:col-span-5 w-full flex justify-center">
+          <div class="w-full max-w-sm">
+            <ChestAnimation />
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="lg:col-span-7 text-left">
+          <Title title={PAGE_HERO.title} as="h1" color="text-brand-black" class="md:text-3xl mb-4" />
+          <Subtitle subtitle={PAGE_HERO.subtitle} color="text-stone-700" class="text-base sm:text-lg leading-relaxed" />
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!--  ------  How We Work Section -->
+  <section class="w-full bg-white pt-6">
+    <div class="mx-auto max-w-5xl px-6 text-left">
+      <Title title={HOW_WE_WORK.title} as="h3" color="text-brand-black" class="md:text-3xl" />
+      
+      <div class="space-y-4 text-stone-700 text-base sm:text-1xl leading-relaxed mb-10">
+        {HOW_WE_WORK.paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+
+      <!-- CTA Button -->
+        <CtaButton
+          href={HOW_WE_WORK.cta.href}
+          label={HOW_WE_WORK.cta.label}
+          class='mb-10'
+        />
+    </div>
+  </section>
+
+</BaseLayout>

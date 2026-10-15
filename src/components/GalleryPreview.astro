@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import CtaButton from './ui/CtaButton.astro';
+
+import PROJECT_01JPG from '../assets/img/project-01.jpeg';
+import PROJECT_02JPG from '../assets/img/project-02.jpeg';
+import PROJECT_03JPG from '../assets/img/project-03.jpeg';
+import PROJECT_04JPG from '../assets/img/project-04.jpeg';
+
+// GalleryPreview Content
+const SECTION_DATA = {
+  projects: [
+    { src: PROJECT_01JPG, alt: 'Realizacja 1' },
+    { src: PROJECT_02JPG, alt: 'Realizacja 2' },
+    { src: PROJECT_03JPG, alt: 'Realizacja 3' },
+    { src: PROJECT_04JPG, alt: 'Realizacja 4' },
+  ],
+  cta: {
+    label: 'Pozostałe realizacje',
+    href: '/galeria',
+  },
+};
+---
+
+<section class="w-full bg-white py-2">
+  
+  <!-- Gallery Grid -->
+  <div class="mx-auto grid max-w-[1600px] grid-cols-1 gap-4 px-6 sm:grid-cols-2 lg:grid-cols-4">
+    {SECTION_DATA.projects.map((project) => (
+      <div class="relative h-[300px] w-full overflow-hidden md:h-[418px]">
+        <Image
+          src={project.src}
+          alt={project.alt}
+          class="absolute inset-0 size-full object-cover transition duration-500 hover:scale-105"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    ))}
+  </div>
+
+  <!-- CTAButton -->
+  <div class="flex justify-center px-6 pt-10 pb-10">
+    <CtaButton
+      href={SECTION_DATA.cta.href}
+      label={SECTION_DATA.cta.label}
+    />
+  </div>
+
+</section>

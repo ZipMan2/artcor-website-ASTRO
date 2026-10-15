@@ -1,0 +1,28 @@
+---
+interface Props {
+  quote?: string;
+  author?: string;
+}
+
+// Quote Content 
+const {
+  quote = '“Wsłuchiwanie się w głos<br class="hidden sm:block"> klientów powinno stać się<br class="hidden sm:block"> biznesem każdej firmy.”',
+  author = '- Tom Peters',
+} = Astro.props;
+---
+
+<section class="w-full bg-white">
+  <div class="mx-auto flex max-w-7xl flex-col items-center justify-center px-6 py-16 text-center md:max-w-2xl md:py-14">
+    
+    <!-- Quote Text -->
+    <h3 class="mb-2 text-xl leading-relaxed font-medium sm:text-2xl md:text-4xl">
+      <Fragment set:html={quote} />
+    </h3>
+
+    <!-- Author Attribution -->
+    <span class="text-sm font-medium text-stone-700 sm:text-base md:ml-auto md:block md:pr-6 md:text-lg">
+      {author}
+    </span>
+
+  </div>
+</section>

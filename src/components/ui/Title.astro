@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  as?: 'h1' | 'h2' | 'h3';
+  color?: string; 
+  class?: string;
+}
+
+const {
+  title,
+  as: Tag = 'h1',
+  color = 'text-brand-white',
+  class: className = '',
+} = Astro.props;
+---
+
+<!-- Title -->
+<Tag class={`mb-4 text-3xl sm:mb-6 sm:text-5xl ${color} ${className}`}>
+  {title}
+</Tag>

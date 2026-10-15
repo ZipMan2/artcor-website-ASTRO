@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import CtaButton from './ui/CtaButton.astro';
+import Subtitle from './ui/Subtitle.astro';
+import Title from './ui/Title.astro';
+import LampLight from './ui/LampLight.astro';
+
+import HEROBGJPG from '../assets/img/hero-bgg.jpeg';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+// Hero Content
+const {
+  title    = 'Nowoczesne meble w Twoim wnętrzu',
+  subtitle = 'ARTCOR tworzą kreatywni i zaangażowani specjaliści.',
+  ctaLabel = 'Sprawdź realizacje',
+  ctaHref  = '/galeria',
+} = Astro.props;
+
+---
+
+<section class="relative flex min-h-[calc(100vh-70px)] md:min-h-[calc(100vh-88px)] items-center">
+
+  <!-- Background  Image -->
+  <div class="absolute inset-0">
+    <Image
+      src={HEROBGJPG}
+      alt="Meble w tle"
+      class="size-full object-cover object-[20%_center] sm:object-center"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <!-- Dark overlay -->
+    <!-- <div class="absolute inset-0 bg-brand-black/40"></div> -->
+  </div>
+
+  <!-- Lamp Animation -->
+  <LampLight />
+
+  <!-- Hero Content -->
+  <div class="relative mx-auto w-full max-w-7xl px-6">
+    <div class="max-w-xl sm:max-w-2xl">
+
+      <!-- Main Headline -->
+      <Title title={title} color="text-brand-black" />
+
+      <!-- Sub Headline -->
+      <Subtitle subtitle={subtitle} color="text-brand-black" />
+
+      <!-- CTA Button -->
+      <CtaButton href={ctaHref} label={ctaLabel} />
+
+    </div>
+  </div>
+
+</section>

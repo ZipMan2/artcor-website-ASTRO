@@ -1,0 +1,297 @@
+<!-- Drawer animation based on: https://codepen.io/jh3y/pen/ExNQxKV by Jhey Tompkins -->
+<!-- Modified for project use  -->
+
+<div class="chest-wrapper">
+  <div class="chest">
+    <div class="chest__panel chest__panel--back"></div>
+    <div class="chest__panel chest__panel--top"></div>
+    <div class="chest__panel chest__panel--bottom"></div>
+    <div class="chest__panel chest__panel--right"></div>
+    <div class="chest__panel chest__panel--front">
+      <div class="chest__panel chest__panel--front-frame"></div>
+    </div>
+    <div class="chest__panel chest__panel--left"></div>
+
+    <!-- Szuflada 1 -->
+    <div class="chest__drawer drawer" data-position="1">
+      <div class="drawer__structure">
+        <div class="drawer__trigger"></div>
+        <div class="drawer__panel drawer__panel--back"></div>
+        <div class="drawer__panel drawer__panel--bottom"></div>
+        <div class="drawer__panel drawer__panel--right"></div>
+        <div class="drawer__panel drawer__panel--left"></div>
+        <div class="drawer__panel drawer__panel--front"></div>
+      </div>
+    </div>
+
+    <!-- Szuflada 2 -->
+    <div class="chest__drawer drawer" data-position="2">
+      <div class="drawer__structure">
+        <div class="drawer__trigger"></div>
+        <div class="drawer__panel drawer__panel--back"></div>
+        <div class="drawer__panel drawer__panel--bottom"></div>
+        <div class="drawer__panel drawer__panel--right"></div>
+        <div class="drawer__panel drawer__panel--left"></div>
+        <div class="drawer__panel drawer__panel--front"></div>
+      </div>
+    </div>
+
+    <!-- Szuflada 3 -->
+    <div class="chest__drawer drawer" data-position="3">
+      <div class="drawer__structure">
+        <div class="drawer__trigger"></div>
+        <div class="drawer__panel drawer__panel--back"></div>
+        <div class="drawer__panel drawer__panel--bottom"></div>
+        <div class="drawer__panel drawer__panel--right"></div>
+        <div class="drawer__panel drawer__panel--left"></div>
+        <div class="drawer__panel drawer__panel--front"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .chest-wrapper *,
+  .chest-wrapper *:after,
+  .chest-wrapper *:before {
+    box-sizing: border-box;
+    transform-style: preserve-3d;
+  }
+
+  .chest-wrapper {
+    --bg: transparent;
+    --hover: 0.6; /* Długość wysunięcia szuflady */
+    --default: 0.01;
+    --height: 30;
+    --width: 20;
+    --depth: 15;
+    --frame: 1;
+    --handle: hsl(0, 0%, 80%);
+    --hue: 10;
+    --saturation: 0%;
+    --drawer-one: hsl(0, 0%, 98%);
+    --drawer-two: hsl(0, 0%, 90%);
+    --drawer-three: hsl(0, 0%, 95%);
+    --unit-one: hsl(var(--hue), var(--saturation), 50%);
+    --unit-two: hsl(var(--hue), var(--saturation), 40%);
+    --unit-three: hsl(var(--hue), var(--saturation), 20%);
+    --unit-four: hsl(var(--hue), var(--saturation), 15%);
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 6rem 0;
+    overflow: visible;
+  }
+
+  .chest {
+    height: calc(var(--height) * 1vmin);
+    width: calc(var(--width) * 1vmin);
+    color: hsl(0, 10%, 10%);
+    position: relative;
+    transform: scale(1.3) translate3d(0, 0, 20vmin) rotateX(-32deg) rotateY(40deg);
+  }
+
+  .chest__panel {
+    position: absolute;
+  }
+
+  .chest__panel--back {
+    background: var(--unit-two);
+  }
+
+  .chest__panel--back,
+  .chest__panel--front {
+    height: 100%;
+    width: 100%;
+    transform: translate3d(0, 0, calc(var(--depth) * var(--coefficient)));
+  }
+
+  .chest__panel--front-frame {
+    height: 100%;
+    width: 100%;
+    border: calc(var(--frame) * 1vmin) solid var(--unit-one);
+    border-bottom-width: calc(var(--frame) * 2vmin);
+    transform: translate3d(0, 0, 0);
+  }
+
+  .chest__panel--front-frame:after,
+  .chest__panel--front-frame:before {
+    content: '';
+    background: var(--unit-one);
+    height: calc(var(--frame) * 1.5vmin);
+    width: calc(var(--width) * 1vmin);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+  }
+
+  .chest__panel--front-frame:after {
+    top: calc(100% / 3 * 1.01);
+  }
+
+  .chest__panel--front-frame:before {
+    top: calc(100% / 3 * 2.01);
+  }
+
+  .chest__panel--front {
+    --coefficient: 0.5vmin;
+  }
+
+  .chest__panel--back {
+    --coefficient: -0.5vmin;
+  }
+
+  .chest__panel--left,
+  .chest__panel--right {
+    height: 100%;
+    left: 50%;
+    width: calc(var(--depth) * 1vmin);
+    background: var(--unit-three);
+    transform: translate(-50%, 0) rotateY(90deg) translate3d(0, 0, calc(var(--width) * var(--coefficient)));
+  }
+
+  .chest__panel--right {
+    width: calc((var(--depth) * 1vmin) + 2px);
+    --coefficient: 0.5vmin;
+  }
+
+  .chest__panel--left {
+    --coefficient: -0.5vmin;
+  }
+
+  .chest__panel--top,
+  .chest__panel--bottom {
+    height: calc(var(--depth) * 1vmin);
+    width: calc(var(--width) * 1vmin);
+    background: var(--unit-two);
+  }
+
+  .chest__panel--top {
+    top: 0;
+    width: calc((var(--width) * 1vmin) + 0.1vmin);
+    height: calc((var(--depth) * 1vmin) + 0.1vmin);
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(-90deg);
+  }
+
+  .chest__panel--bottom {
+    bottom: 0;
+    transform: translate(0, 50%) rotateX(-90deg);
+  }
+
+  .chest__drawer {
+    --drawer-height: calc((var(--height) - (5 * var(--frame))) / 3);
+    position: absolute;
+    top: var(--top, 0);
+    left: 50%;
+    height: calc(var(--drawer-height) * 1vmin);
+    width: calc((var(--width) - (2 * var(--frame))) * 1vmin);
+    /* Kluczowe: cała szuflada przesuwa się do przodu po najechaniu na nią */
+    transform: translate3d(-50%, 0, calc((var(--depth) * 0.5vmin + 0.01vmin) + (var(--open, var(--default)) * var(--depth) * 1vmin)));
+    transition: transform var(--transition);
+  }
+
+  .chest__drawer:hover {
+    --open: var(--hover);
+  }
+
+  .chest__drawer[data-position="1"] {
+    --top: calc(var(--frame) * 1vmin);
+  }
+
+  .chest__drawer[data-position="2"] {
+    --top: calc(((2 * var(--frame)) + var(--drawer-height)) * 1vmin);
+  }
+
+  .chest__drawer[data-position="3"] {
+    --top: calc(((3 * var(--frame)) + (2 * var(--drawer-height))) * 1vmin);
+  }
+
+  .drawer__structure {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .drawer__panel {
+    position: absolute;
+  }
+
+  .drawer__panel--left,
+  .drawer__panel--right {
+    width: calc(var(--depth) * 1vmin);
+    height: 65%;
+    background: var(--drawer-two);
+    bottom: 1%;
+  }
+
+  .drawer__panel--left {
+    left: 0;
+    transform-origin: 0 50%;
+    transform: rotateY(90deg);
+  }
+
+  .drawer__panel--right {
+    right: 0;
+    transform-origin: 100% 50%;
+    transform: rotateY(-90deg);
+  }
+
+  .drawer__panel--front {
+    height: calc((var(--drawer-height) + (0.6 * var(--frame))) * 1vmin);
+    width: calc((var(--width) - (0.6 * var(--frame))) * 1vmin);
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 1px);
+    background: var(--unit-four);
+  }
+
+  .drawer__panel--bottom,
+  .drawer__panel--back {
+    width: 100%;
+  }
+
+  .drawer__panel--bottom {
+    height: calc(var(--depth) * 1vmin);
+    background: var(--drawer-three);
+    bottom: 5%;
+    left: 50%;
+    transform-origin: 50% 100%;
+    transform: translate(-50%, 0) rotateX(90deg);
+  }
+
+  .drawer__panel--back {
+    height: 65%;
+    background: var(--drawer-one);
+    bottom: 1%;
+    left: 50%;
+    transform: translate3d(-50%, 0, calc(var(--depth) * -1vmin));
+  }
+
+  .drawer__trigger {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .drawer__trigger:after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(var(--handle), var(--handle)) 50% 15% / 40% 8% no-repeat, transparent;
+    height: 110%;
+    width: 110%;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0.5vmin);
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+import { SEO } from 'astro-seo';
+import { Font } from "astro:assets";
+import { ClientRouter } from 'astro:transitions';
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="/favicon.ico" />
+
+<SEO
+  title={title}
+  description={description}
+  canonical={canonical}
+  openGraph={{ basic: { title, type: 'website', image: '/og-image.png', url: canonical, } }}
+/>
+
+<Font cssVariable="--font-poppins" />
+
+<ClientRouter /> 

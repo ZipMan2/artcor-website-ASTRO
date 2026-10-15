@@ -1,0 +1,85 @@
+---
+import { GalleryTabs } from '../features/Gallery/GalleryTabs';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Import images
+import ind1 from '../assets/img/individual-1.jpeg';
+import ind2 from '../assets/img/individual-2.jpeg';
+import ind3 from '../assets/img/individual-3.jpeg';
+import ind4 from '../assets/img/individual-4.jpeg';
+import ind5 from '../assets/img/individual-5.jpeg';
+import ind6 from '../assets/img/individual-6.png';
+import ind7 from '../assets/img/individual-7.jpeg';
+import ind8 from '../assets/img/individual-8.jpeg';
+import ind9 from '../assets/img/individual-9.png';
+import ind10 from '../assets/img/individual-10.jpeg';
+import ind11 from '../assets/img/individual-11.jpeg';
+
+import con1 from '../assets/img/concept-1.jpeg';
+import con2 from '../assets/img/concept-2.jpeg';
+import con3 from '../assets/img/concept-3.jpeg';
+import con4 from '../assets/img/concept-4.jpeg';
+import con5 from '../assets/img/concept-5.jpeg';
+
+import com1 from '../assets/img/commercial-1.jpeg';
+import com2 from '../assets/img/commercial-2.jpeg';
+import com3 from '../assets/img/commercial-3.jpeg';
+import com4 from '../assets/img/commercial-4.jpeg';
+import com5 from '../assets/img/commercial-5.jpeg';
+import com6 from '../assets/img/commercial-6.jpeg';
+import com7 from '../assets/img/commercial-7.jpeg';
+
+// Gallery categories data
+const CATEGORIES = [
+  {
+    id: 'indywidualne',
+    label: 'Indywidualne',
+    images: [
+      { src: ind1.src, alt: 'Realizacja indywidualna 1' },
+      { src: ind2.src, alt: 'Realizacja indywidualna 2' },
+      { src: ind3.src, alt: 'Realizacja indywidualna 3' },
+      { src: ind4.src, alt: 'Realizacja indywidualna 4' },
+      { src: ind5.src, alt: 'Realizacja indywidualna 5' },
+      { src: ind6.src, alt: 'Realizacja indywidualna 6' },
+      { src: ind7.src, alt: 'Realizacja indywidualna 7' },
+      { src: ind8.src, alt: 'Realizacja indywidualna 8' },
+      { src: ind9.src , alt: 'Realizacja indywidualna 9' },
+      { src: ind10.src, alt: 'Realizacja indywidualna 10' },
+      { src: ind11.src, alt: 'Realizacja indywidualna 11' },
+    ],
+  },
+  {
+    id: 'koncepty',
+    label: 'Koncepty',
+    images: [
+      { src: con1.src, alt: 'Koncept 1' },
+      { src: con2.src, alt: 'Koncept 2' },
+      { src: con3.src, alt: 'Koncept 3' },
+      { src: con4.src, alt: 'Koncept 4' },
+      { src: con5.src, alt: 'Koncept 5' },
+    ],
+  },
+  {
+    id: 'komercyjne',
+    label: 'Komercyjne',
+    images: [
+      { src: com1.src, alt: 'Realizacja komercyjna 1' },
+      { src: com2.src, alt: 'Realizacja komercyjna 2' },
+      { src: com3.src, alt: 'Realizacja komercyjna 3' },
+      { src: com4.src, alt: 'Realizacja komercyjna 4' },
+      { src: com5.src, alt: 'Realizacja komercyjna 5' },
+      { src: com6.src, alt: 'Realizacja komercyjna 6' },
+      { src: com7.src, alt: 'Realizacja komercyjna 7' },
+    ],
+  },
+];
+---
+<BaseLayout title="Galeria realizacji – Artcor" description="Zobacz nasze realizacje mebli indywidualnych, konceptów i projektów komercyjnych.">
+  <section class="w-full py-12">
+    <div class="mx-auto max-w-7xl px-6">
+      
+      <GalleryTabs categories={CATEGORIES} client:load />
+    </div>
+  </section>
+</BaseLayout>
+
